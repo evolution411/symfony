@@ -1,0 +1,6 @@
+; $ID$
+name = Hello World Module
+description = My very first Drupal Module
+package = Yan custom module
+core = 7.x
+files[] = helloword.module

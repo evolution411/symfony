@@ -1,0 +1,21 @@
+/* 
+    Document   : style.css
+    Created on : Jun 21, 2013, 1:39:05 PM
+    Author     : ychen7
+    Description:
+        Purpose of the stylesheet follows.
+*/
+#searchtable{
+    margin:auto;
+    border:1px;
+}
+#display{
+    
+    font-size:14px;
+    font-family: tahoma;
+    width:500px;
+    height:600px;
+    border:1px solid;
+    overflow: auto;
+    background-color: yellow;
+    }

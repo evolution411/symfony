@@ -1,0 +1,15 @@
+function helloworld_menu(){
+$items = array();
+$items['helloworld'] = array(
+'title' => t('Welcome to the Hello World Module'),
+'page callback' => 'helloworld_page',
+'page arguments' => array(1),
+'access arguments' => array('access content'),
+'type' => Menu_CALLBACK,
+);
+return $items;
+}
+function helloworld_page($argument){
+return "Hello World! Arguments parse was " .$argument;
+
+}
