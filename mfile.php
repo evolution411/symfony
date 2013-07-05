@@ -73,7 +73,7 @@ $years = range($current,1950);
 echo"<td>Year:</td>";
 echo"<td>";
 echo "<select name='pub_date'>";
-    foreach($years  as $year){
+    foreach($years as $year){
         echo "<option value= \"$year\">$year</option>";
         
     }

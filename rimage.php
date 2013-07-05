@@ -2,19 +2,15 @@
 $dir = "images/cards";
 $image = array();
 $image = randomimage($dir);
-//echo $image;
 $rad1=array();
-
-//randomly select 21 cards from card deck.--function call
 $rad=randomimage($dir);
 shuffle($rad);
-
-
-foreach($rad as $img){
- //echo "<td><img src='".$dir.'/'.$img."'>";
+foreach($rad as $r){
+ echo "<img src='".$dir.'/'.$r."'>";
 }
 echo "<br>";
 $seven = array();
+
 
 //generate 7 cards function call.
 $seven = selectcards($rad);
@@ -22,10 +18,13 @@ foreach($seven as $s){
  echo "<img src='".$dir.'/'.$s."'>";
 }
 echo "<br>";
-echo "<img src='".$dir.'/'.$rad[19]."'>";
+echo "FIRST CARD: ";
+echo "<img src='".$dir.'/'.$rad[0]."'>";
+
+//divide into 3 groups and put them together
 $neworder = array();
 $neworder=groups($rad);
-echo"<br>";
+echo"<br>";/*
 echo "PART 1 ";
 echo"<br>";
 getpart1($neworder,$dir);
@@ -38,33 +37,76 @@ echo "PART 3";
 echo"<br>";
 getpart3($neworder,$dir);
 echo"<br>";
+*/
 
-function getpart1($neworder,$dir){
-for($i=0;$i<7;$i++){
-    echo "<img src='".$dir.'/'.$neworder[$i]."'>";
+trickfn($neworder,$dir);
+function trickfn($neworder,$dir){
+    $btnpt1 = isset($_POST['btn1']);
+    $btnpt2 = isset($_POST['btn2']);
+    $btnpt3 = isset($_POST['btn3']);
+    $newrand = array();
+    $newrand = $neworder;
+    $newgroup = array();
+    $newpt1 = array();
+    $newpt2 = array();
+    $newpt3 = array();
+    $count=0;
+    if($count<3){
+    if($btnpt1){
+       $newpt1= getpart1($newrand);
+       $newpt2= getpart2($newrand);
+       $newpt3 = getpart3($newrand);
+       $newrand = array_merge($newpt3,$newpt1,$newpt2);
+       $newgroup = groups($newrand);
+       foreach($newgroup as $nr){
+ echo "<img src='".$dir.'/'.$nr."'>";
 }
-echo "<input type='submit' name='btn1' value='Yes'/>";
-//echo "<img src='".$dir.'/'.$neworder[10]."'>";
-}
-
-function getpart2($neworder,$dir){
-    $submit= isset($_POST['submit']);
-    if($submit){
-        echo"group 2 is selected";
-        
+echo "<br>";
+       $count++;    
+    }   
+    if($btnpt2){
+       $newpt1= getpart1($newrand);
+       $newpt2= getpart2($newrand);
+       $newpt3 = getpart3($newrand);
+       $newrand = array_merge($newpt1,$newpt2,$newpt3);
+       $newgroup = groups($newrand);
+       $count++;
     }
+    if($btnpt3){
+       $newpt1= getpart1($newrand);
+       $newpt2= getpart2($newrand);
+       $newpt3 = getpart3($newrand);
+       $newrand = array_merge($newpt3,$newpt1,$newpt2);
+       $newgroup = groups($newrand);
+       $count++;
+    }
+    }   
+}
+function getmiddle(){
+    
+}
+function getpart1($neworder){
+    $pt1 = array();
+for($i=0;$i<7;$i++){
+   $pt1[]=$neworder[$i];
+}
+return $pt1;
+}
+
+function getpart2($neworder){
+$pt2 = array();
 for($i=7;$i<14;$i++){
-    echo "<img src='".$dir.'/'.$neworder[$i]."'>";
+    $pt2[]=$neworder[$i];
 }
-echo "<input type='submit' name='btn2' value='Yes'/>";
-//echo "<img src='".$dir.'/'.$neworder[10]."'>";
+return $pt2;
 }
-function getpart3($neworder,$dir){
+
+function getpart3($neworder){
+    $pt3 = array();
 for($i=14;$i<21;$i++){
-    echo "<img src='".$dir.'/'.$neworder[$i]."'>";
+    $pt3[]=$neworder[$i];
 }
-echo "<input type='submit' name='btn3' value='Yes'/>";
-//echo "<img src='".$dir.'/'.$neworder[10]."'>";
+return $pt3;
 }
 
 function groups($rad){
@@ -118,6 +160,13 @@ function randomimage($directory) {
                 <li><a href="">Into your mind</a></li>
                 <li><a href="">Get rid off my eyes</a></li>
             </ul>
+        </div>
+        <div>
+            <form method="post" action="">
+            <input type="submit" name ="btn1" value="Part1">
+             <input type="submit" name ="btn2" value="Part2">
+              <input type="submit" name ="btn3" value="Part3">
+            </form>
         </div>
     </body>
     
