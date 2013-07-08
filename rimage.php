@@ -64,6 +64,7 @@ function trickfn($neworder,$dir){
 echo "<br>";
        $count++;    
     }   
+   
     if($btnpt2){
        $newpt1= getpart1($newrand);
        $newpt2= getpart2($newrand);
@@ -72,6 +73,7 @@ echo "<br>";
        $newgroup = groups($newrand);
        $count++;
     }
+    
     if($btnpt3){
        $newpt1= getpart1($newrand);
        $newpt2= getpart2($newrand);
